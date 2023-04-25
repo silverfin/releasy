@@ -75,12 +75,12 @@ Dir[File.expand_path("wrappers/ruby-*.7z", $original_path)].each do |path_to_rub
         asserts("readme copied to folder") { same_contents? "#{folder}/README.txt", "README.txt" }
         asserts("license copied to folder") {  same_contents? "#{folder}/LICENSE.txt", "LICENSE.txt" }
 
-        asserts("test_app.exe has been created") { File.exists?("#{folder}/test_app.exe") }
-        denies("console.exe left in folder") { File.exists?("#{folder}/console.exe") }
-        denies("windows.exe left in folder") { File.exists?("#{folder}/windows.exe") }
+        asserts("test_app.exe has been created") { File.exist?("#{folder}/test_app.exe") }
+        denies("console.exe left in folder") { File.exist?("#{folder}/console.exe") }
+        denies("windows.exe left in folder") { File.exist?("#{folder}/windows.exe") }
 
-        asserts("ruby.exe left in bin/") { File.exists?("#{folder}/bin/ruby.exe") }
-        denies("rubyw.exe left in bin/") { File.exists?("#{folder}/bin/rubyw.exe") }
+        asserts("ruby.exe left in bin/") { File.exist?("#{folder}/bin/ruby.exe") }
+        denies("rubyw.exe left in bin/") { File.exist?("#{folder}/bin/rubyw.exe") }
 
         asserts("plenty of dlls copied") { Dir["#{folder}/bin/*.dll"].size >= 6 }
 
@@ -96,7 +96,7 @@ Dir[File.expand_path("wrappers/ruby-*.7z", $original_path)].each do |path_to_rub
 
         gemspecs_to_use.each do |gemspec|
           name = "#{gemspec.name}-#{gemspec.version}"
-          asserts("#{name} gem specification copied") { File.exists? "#{folder}/vendor/specifications/#{name}.gemspec" }
+          asserts("#{name} gem specification copied") { File.exist? "#{folder}/vendor/specifications/#{name}.gemspec" }
           asserts("#{name} gem folder copied") { File.directory? "#{folder}/vendor/gems/#{name}" }
         end
 

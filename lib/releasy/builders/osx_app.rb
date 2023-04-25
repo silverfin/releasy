@@ -73,7 +73,7 @@ module Releasy
 
       protected
       def build
-        raise ConfigError, "#wrapper file does not exist: #{wrapper}" unless File.exists? wrapper
+        raise ConfigError, "#wrapper file does not exist: #{wrapper}" unless File.exist? wrapper
 
         new_app = File.join folder, app_name
 

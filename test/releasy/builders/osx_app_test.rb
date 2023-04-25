@@ -86,26 +86,26 @@ if osx_app_wrapper
         asserts("readme copied to folder") { same_contents? "#{folder}/README.txt", "README.txt" }
         asserts("license copied to folder") { same_contents? "#{folder}/LICENSE.txt", "LICENSE.txt" }
 
-        asserts("executable renamed") { File.exists?("#{app_folder}/Contents/MacOS/Test App") }
+        asserts("executable renamed") { File.exist?("#{app_folder}/Contents/MacOS/Test App") }
         if Gem.win_platform?
           asserts("set_app_executable.sh created and with correct line endings") { File.read("#{folder}/set_app_executable.sh") == File.read(data_file("set_app_executable.sh")) }
         else
           asserts("app is an executable") { File.executable?("#{app_folder}/Contents/MacOS/Test App") }
-          denies("set_app_executable.sh created") { File.exists? "#{folder}/set_app_executable.sh" }
+          denies("set_app_executable.sh created") { File.exist? "#{folder}/set_app_executable.sh" }
         end
 
-        asserts("Gosu icon deleted") { not File.exists? "#{app_folder}/Contents/Resources/Gosu.icns" }
-        asserts("icon is copied to correct location") { File.exists? "#{app_folder}/Contents/Resources/test_app.icns" }
+        asserts("Gosu icon deleted") { not File.exist? "#{app_folder}/Contents/Resources/Gosu.icns" }
+        asserts("icon is copied to correct location") { File.exist? "#{app_folder}/Contents/Resources/test_app.icns" }
         asserts("Main.rb is correct") { same_contents? "#{app_folder}/Contents/Resources/Main.rb", data_file("Main.rb") }
         asserts("Info.plist is correct") { same_contents? "#{app_folder}/Contents/Info.plist", data_file("Info.plist") }
 
         gemspecs_to_use.each do |gemspec|
           name = "#{gemspec.name}-#{gemspec.version}"
           asserts("#{name} gem folder copied") { File.directory? "#{app_folder}/Contents/Resources/vendor/gems/#{name}" }
-          asserts("#{name} spec copied") { File.exists? "#{app_folder}/Contents/Resources/vendor/specifications/#{name}.gemspec" }
+          asserts("#{name} spec copied") { File.exist? "#{app_folder}/Contents/Resources/vendor/specifications/#{name}.gemspec" }
         end
 
-        denies("default chingu gem left in app")  { File.exists?("#{app_folder}/Contents/Resources/lib/chingu") }
+        denies("default chingu gem left in app")  { File.exist?("#{app_folder}/Contents/Resources/lib/chingu") }
 
         helper(:enc_folder) { "#{app_folder}/Contents/Resources/lib/enc" }
         asserts("remaining encoding files") { Dir["#{enc_folder}/**/*.bundle"].map {|f| f[(enc_folder.size + 1)..-1] } }.same_elements %w[encdb.bundle iso_8859_1.bundle utf_16le.bundle trans/single_byte.bundle trans/transdb.bundle trans/utf_16_32.bundle]

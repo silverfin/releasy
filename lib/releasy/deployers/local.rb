@@ -41,8 +41,8 @@ module Releasy
         raise ConfigError, "#path is same as build directory" if File.expand_path(destination) == File.expand_path(file)
 
         # If destination file already exists or is as new as the one we are going to copy over it, don't bother.
-        if (not File.exists?(destination)) or (File.ctime(destination) < File.ctime(file))
-          mkdir_p path, **fileutils_options unless File.exists? path
+        if (not File.exist?(destination)) or (File.ctime(destination) < File.ctime(file))
+          mkdir_p path, **fileutils_options unless File.exist? path
           cp file, path, **fileutils_options
         else
           warn "Skipping '#{File.basename(file)}' because it already exists in '#{path}'"

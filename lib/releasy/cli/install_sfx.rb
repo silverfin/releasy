@@ -41,7 +41,7 @@ Releasy::Cli.define_command do
                       end
 
     destination_file = File.join(assets_location, sfx_file)
-    if File.exists? destination_file
+    if File.exist? destination_file
       puts "#{command}: #{destination_file} already exists; no need to install it again"
       exit 0
     else
@@ -54,7 +54,7 @@ Releasy::Cli.define_command do
           command = %[sudo cp "#{sfx_path}" "#{assets_location}"]
           puts "Copy failed, trying again as super-user:\n#{command}"
           system command
-          if File.exists? destination_file
+          if File.exist? destination_file
             puts "#{sfx_file} copied to #{assets_location}"
           else
             puts "Failed copy as super-user :("

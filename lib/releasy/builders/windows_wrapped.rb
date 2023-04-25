@@ -118,7 +118,7 @@ module Releasy
         execute_command %[#{seven_zip_command} x "#{wrapper}" -o"#{File.dirname folder}"]
         mv File.join(File.dirname(folder), archive_name), folder, **fileutils_options
         rm_r File.join(folder, "share"), **fileutils_options
-        rm_r File.join(folder, "include"), **fileutils_options if File.exists? File.join(folder, "include")
+        rm_r File.join(folder, "include"), **fileutils_options if File.exist? File.join(folder, "include")
         unused_exe = effective_executable_type == :windows ? "ruby.exe" : "rubyw.exe"
         rm File.join(folder, "bin", unused_exe), **fileutils_options
       end

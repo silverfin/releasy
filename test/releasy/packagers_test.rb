@@ -62,7 +62,7 @@ null_file = Gem.win_platform? ? "NUL" : "/dev/null"
       if type == :exe
         asserts("#{packager}::SFX_NAME") { topic::SFX_NAME }.equals "7z.sfx"
         asserts("#{packager}::SFX_FILE") { topic::SFX_FILE }.equals File.expand_path("bin/7z.sfx", $original_path)
-        asserts("sfx file included") { File.exists? topic::SFX_FILE }
+        asserts("sfx file included") { File.exist? topic::SFX_FILE }
       end
     end
   end

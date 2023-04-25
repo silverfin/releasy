@@ -4,7 +4,7 @@ folder = File.join(output_path, "test_app_0_1_SOURCE")
 
 def md5_created(extension)
   file = "#{File.join(output_path, "test_app_0_1_SOURCE")}#{extension}.MD5"
-  asserts("MD5 file created") { File.exists?(file) }
+  asserts("MD5 file created") { File.exist?(file) }
   asserts("MD5 file contents sensible") { File.read(file) =~ /^[0-9a-f]{32}$/ }
 end
 
